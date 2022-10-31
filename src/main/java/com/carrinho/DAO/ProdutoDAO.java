@@ -50,6 +50,7 @@ public class ProdutoDAO {
             // O primeiro ponteiro fica na linha dos rótulos
             while(rs.next()) {
                Produto p = new Produto();
+               p.setId(rs.getInt("id"));
                p.setDescricao(rs.getString("descricao"));
                p.setPreco(rs.getFloat("preco"));
                p.setEstoque(rs.getInt("estoque"));
@@ -72,6 +73,7 @@ public class ProdutoDAO {
             // Transformar o result set em objetos e inseri-lo na lista
             // O primeiro ponteiro fica na linha dos rótulos
             while(rs.next()) {
+                p.setId(rs.getInt("id"));
                 p.setDescricao(rs.getString("descricao"));
                 p.setPreco(rs.getFloat("preco"));
                 p.setEstoque(rs.getInt("estoque"));

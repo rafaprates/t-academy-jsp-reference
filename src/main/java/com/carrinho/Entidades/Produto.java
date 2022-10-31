@@ -1,6 +1,7 @@
 package com.carrinho.Entidades;
 
 public class Produto {
+    private int id;
     private String descricao;
     private float preco;
     private int estoque;
@@ -18,6 +19,14 @@ public class Produto {
     public Produto(String descricao, float preco) {
         this.descricao = descricao;
         this.preco = preco;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescricao() {

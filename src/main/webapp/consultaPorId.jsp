@@ -18,6 +18,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>Descrição</th>
                     <th>Preço</th>
                     <th>Estoque</th>
@@ -30,6 +31,7 @@
                     if (id != null && !id.isEmpty()) {
                         Produto p = ProdutoDAO.consultarPorId(id);
                         out.write("<tr>");
+                    out.write("<td>"+p.getId()+"</td>");
                         out.write("<td>"+p.getDescricao()+"</td>");
                         out.write("<td>"+p.getPreco()+"</td>");
                         out.write("<td>"+p.getEstoque()+"</td>");

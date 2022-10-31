@@ -43,6 +43,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>id</th>
                 <th>Descrição</th>
                 <th>Preço</th>
                 <th>Estoque</th>
@@ -54,6 +55,7 @@
                 List<Produto> produtos = ProdutoDAO.consultarTodos();
                 for(Produto p : produtos) {
                     out.write("<tr>");
+                    out.write("<td>"+p.getId()+"</td>");
                     out.write("<td>"+p.getDescricao()+"</td>");
                     out.write("<td>"+p.getPreco()+"</td>");
                     out.write("<td>"+p.getEstoque()+"</td>");
