@@ -15,6 +15,31 @@
   <body>
 
     <div class="container">
+
+
+        <form action="consultaPorId.jsp" method="GET">
+          <div class="form-group">
+              <label for="unMedida">
+                Pesquisar por id
+                <input
+                  class="form-control"
+                  type="number"
+                  name="id"
+                  id="id"
+                  placeholder="id"
+                  required
+                />
+              </label>
+          </div>
+
+          <div class="from-group">
+              <button class="btn btn-primary">Pesquisar</button>
+          </div>
+        </form>
+
+
+        <hr>
+
     <table class="table">
         <thead>
             <tr>

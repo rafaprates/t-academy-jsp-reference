@@ -61,4 +61,25 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+
+    public static Produto consultarPorId(String id) {
+        Produto p = new Produto();
+        Connection con = Conexao.conectar();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM produto WHERE id="
+                                                            +id);
+            ResultSet rs = ps.executeQuery();
+            // Transformar o result set em objetos e inseri-lo na lista
+            // O primeiro ponteiro fica na linha dos rótulos
+            while(rs.next()) {
+                p.setDescricao(rs.getString("descricao"));
+                p.setPreco(rs.getFloat("preco"));
+                p.setEstoque(rs.getInt("estoque"));
+                p.setUnMedida(rs.getString("unidadeMedida"));
+            }
+        } catch (SQLException e) {
+            return p;
+        }
+        return p;
+    }
 }
