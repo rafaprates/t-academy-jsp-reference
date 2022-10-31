@@ -43,13 +43,13 @@ public class ProdutoDAO {
     public static List<Produto> consultarTodos() {
         List<Produto> produtos = new ArrayList<Produto>();
         Connection con = Conexao.conectar();
-        Produto p = new Produto();
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM produto");
             ResultSet rs = ps.executeQuery();
             // Transformar o result set em objetos e inseri-lo na lista
             // O primeiro ponteiro fica na linha dos rótulos
             while(rs.next()) {
+               Produto p = new Produto();
                p.setId(rs.getInt("id"));
                p.setDescricao(rs.getString("descricao"));
                p.setPreco(rs.getFloat("preco"));
