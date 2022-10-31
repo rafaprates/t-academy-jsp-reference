@@ -31,7 +31,7 @@
                     if (id != null && !id.isEmpty()) {
                         Produto p = ProdutoDAO.consultarPorId(id);
                         out.write("<tr>");
-                    out.write("<td>"+p.getId()+"</td>");
+                        out.write("<td>"+p.getId()+"</td>");
                         out.write("<td>"+p.getDescricao()+"</td>");
                         out.write("<td>"+p.getPreco()+"</td>");
                         out.write("<td>"+p.getEstoque()+"</td>");
@@ -41,6 +41,11 @@
                 %>
             </tbody>
         </table>
+
+        <form action="alteracao.jsp?id="+<%=request.getParameter("id")%> method="GET">
+            <button class="btn btn-warning">Alterar</button>
+        </form>
+
     </div>
   </body>
 </html>

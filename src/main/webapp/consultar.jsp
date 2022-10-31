@@ -15,9 +15,7 @@
   <body>
 
     <div class="container">
-
-
-        <form action="consultaPorId.jsp" method="GET">
+        <form action="consultarPorId.jsp" method="GET">
           <div class="form-group">
               <label for="unMedida">
                 Pesquisar por id
@@ -36,8 +34,6 @@
               <button class="btn btn-primary">Pesquisar</button>
           </div>
         </form>
-
-
         <hr>
 
     <table class="table">
@@ -48,6 +44,8 @@
                 <th>Preço</th>
                 <th>Estoque</th>
                 <th>Un. Medida</th>
+                <th>Ações</th>
+                <th>Excluir</th>
             </tr>
         </thead>
         <tbody>
@@ -60,6 +58,8 @@
                     out.write("<td>"+p.getPreco()+"</td>");
                     out.write("<td>"+p.getEstoque()+"</td>");
                     out.write("<td>"+p.getUnMedida()+"</td>");
+                    out.write("<td><a href=editar.jsp?id="+p.getId()+">Editar</a></td>");
+                    out.write("<td><a href=excluir.jsp?id="+p.getId()+">Excluir</a></td>");
                     out.write("</tr>");
                 }
             %>

@@ -43,13 +43,13 @@ public class ProdutoDAO {
     public static List<Produto> consultarTodos() {
         List<Produto> produtos = new ArrayList<Produto>();
         Connection con = Conexao.conectar();
+        Produto p = new Produto();
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM produto");
             ResultSet rs = ps.executeQuery();
             // Transformar o result set em objetos e inseri-lo na lista
             // O primeiro ponteiro fica na linha dos rótulos
             while(rs.next()) {
-               Produto p = new Produto();
                p.setId(rs.getInt("id"));
                p.setDescricao(rs.getString("descricao"));
                p.setPreco(rs.getFloat("preco"));
@@ -67,12 +67,12 @@ public class ProdutoDAO {
         Produto p = new Produto();
         Connection con = Conexao.conectar();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM produto WHERE id="
-                                                            +id);
-            ResultSet rs = ps.executeQuery();
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM produto WHERE id=?");
+            ps.setString(1, id);
             // Transformar o result set em objetos e inseri-lo na lista
+            ResultSet rs = ps.executeQuery();
             // O primeiro ponteiro fica na linha dos rótulos
-            while(rs.next()) {
+            if (rs.next()) {
                 p.setId(rs.getInt("id"));
                 p.setDescricao(rs.getString("descricao"));
                 p.setPreco(rs.getFloat("preco"));
@@ -83,5 +83,39 @@ public class ProdutoDAO {
             return p;
         }
         return p;
+    }
+
+    public static void alterar(String id) {
+        Produto p = consultarPorId(id);
+        Connection con = Conexao.conectar();
+        try {
+            PreparedStatement ps = con.prepareStatement("UPDATE produto" +
+                                                            "SET descricao=?," +
+                                                            "SET preco=?," +
+                                                            "SET estoque=?," +
+                                                            "SET unidadeMedida=?" +
+                                                            "WHERE id=?");
+            ps.setString(1, p.getDescricao());
+            ps.setFloat(2, p.getPreco());
+            ps.setInt(3, p.getId());
+            ps.setString(4, p.getUnMedida());
+            ps.setInt(5, p.getId());
+            ps.execute();
+        } catch (SQLException e) {
+        }
+    }
+
+    public static void excluir(String id) {
+        Connection con = Conexao.conectar();
+        if (con!= null) {
+            String sql = "DELETE FROM produto WHERE id=?";
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, id);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+               throw new RuntimeException(e);
+            }
+        }
     }
 }
